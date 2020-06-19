@@ -13,9 +13,10 @@ class Evento(n:String) {
   def agregarHorario(quien: String, horario: Horario): Unit = {
     val dupla: HorasQuien = (horario, quien)
     agregarAgrupado(dupla, listaHorarios)
-  } // Esta función es pa llamarla tras haber terminado de guardar las horas disponibles
+  } // Esta función es pa llamarla tras haber terminado de armar el horario
 
-  def agregarAgrupado(dupla: HorasQuien, lista: List[HorasQuien]): Unit = {
+  @scala.annotation.tailrec
+  private def agregarAgrupado(dupla: HorasQuien, lista: List[HorasQuien]): Unit = {
     lista match {
       case Nil => listaHorarios = dupla::listaHorarios
       case x::xs =>
@@ -24,5 +25,11 @@ class Evento(n:String) {
         else agregarAgrupado(dupla,xs)
     }
   }
+
+  def coordinar(): List[(Int, (String, String))] = {
+    listaHorarios.map(x => Qhorarios(x).coord())
+  }
+
+
 
 }
