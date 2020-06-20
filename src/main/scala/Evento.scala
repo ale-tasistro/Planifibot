@@ -1,35 +1,29 @@
 class Evento(n:String) {
-  type HorasQuien = (Horario, String)
-  def Qhorarios(hQ:HorasQuien) : Horario = {
-    hQ._1
-  }
-  def hQuien(hQ:HorasQuien) : String = {
-    hQ._2
-  }
 
   val nombre:String = n
-  private var listaHorarios:List[HorasQuien] = _
+  private var listaHorarios:List[Horario] = _
 
-  def agregarHorario(quien: String, horario: Horario): Unit = {
-    val dupla: HorasQuien = (horario, quien)
-    agregarAgrupado(dupla, listaHorarios)
-  } // Esta función es pa llamarla tras haber terminado de armar el horario
-
+  // llama a buscarDia, y pide horas al horario resultante
+  def agregarHorario(): Unit = {
+    println("Para qué día querés agregar horas?")
+    val dia: String = io.StdIn.readLine(); val h: Horario = buscarDia(dia, listaHorarios)
+    println(s"Por favor ingresá de qué hora a qué hora estarías para '$nombre' ese día")
+    h.pedirHoras()
+  }
+  // busca un horario con día "dia" en "lista", si lo encuentre lo devuelve,
+  // si no, crea uno nuevo, lo agrega al principio de listaHorarios, y lo devuelve
   @scala.annotation.tailrec
-  private def agregarAgrupado(dupla: HorasQuien, lista: List[HorasQuien]): Unit = {
+  private def buscarDia(dia: String, lista: List[Horario]) : Horario =
     lista match {
-      case Nil => listaHorarios = dupla::listaHorarios
-      case x::xs =>
-        if (Qhorarios(dupla).dia == Qhorarios(x).dia)
-          Qhorarios(dupla).mergeHorarios(Qhorarios(x))
-        else agregarAgrupado(dupla,xs)
+      case Nil => val h: Horario = new Horario(dia)
+        listaHorarios =  h::listaHorarios
+        h
+      case x::xs => if (x.dia == dia) x else buscarDia(dia, xs)
     }
+
+  // devuelve una lista con los marzullos de cada elemento de listaHorarios
+  def coordinar(): List[(String, Int, (String, String))] = {
+    listaHorarios.map(x => x.coord())
   }
-
-  def coordinar(): List[(Int, (String, String))] = {
-    listaHorarios.map(x => Qhorarios(x).coord())
-  }
-
-
 
 }
