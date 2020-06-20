@@ -1,0 +1,11 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/usuario/IdeaProjects/Planifibot/target/scala-2.13/planifibot_2.13-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Horario.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/usuario/IdeaProjects/Planifibot/target/scala-2.13/classes/Horario.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hora$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/usuario/IdeaProjects/Planifibot/target/scala-2.13/classes/Hora$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hora.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/usuario/IdeaProjects/Planifibot/target/scala-2.13/classes/Hora.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Evento.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/usuario/IdeaProjects/Planifibot/target/scala-2.13/classes/Evento.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
