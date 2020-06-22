@@ -5,14 +5,22 @@ class Horario(d:String) {
   def flag(h: HoraFlag): Int = h._2
 
   val dia: String = d
-  private var horas: List[HoraFlag] = _
+  private var horas: List[HoraFlag] = Nil
 
   // lee el input y arma una intervalo con dos horas, la primera debe ser menor que la segunda
+  @scala.annotation.tailrec
   private def entradaSalida(): List[HoraFlag] = {
-    println("A partir de qué hora podés?")
-    val hhE: Int = io.StdIn.readInt(); val mmE: Int = io.StdIn.readInt(); val entrada: Hora = Hora(hhE, mmE)
+
+    println("A partir de qué hora podés? (hora minuto)")
+    val hE : String = io.StdIn.readLine()
+    val splitE: Array[String] = hE.split(' ')
+    val entrada: Hora = Hora(splitE(0).toInt, splitE(1).toInt)
+
     println("Y hasta qué hora?")
-    val hhS: Int = io.StdIn.readInt(); val mmS: Int = io.StdIn.readInt(); val salida: Hora = Hora(hhS, mmS)
+    val hS : String = io.StdIn.readLine()
+    val splitS: Array[String] = hS.split(" ")
+    val salida: Hora = Hora(splitS(0).toInt, splitS(1).toInt)
+
     entrada.respecto(salida) match {
       case "menor" => (entrada, 1) :: (salida, -1) :: Nil
       case "igual" => println("Error: las horas son iguales")
@@ -59,7 +67,6 @@ class Horario(d:String) {
               } else {// si no, se pasa hora(x)(== hora(y)) con la suma de las flags como nueva cabeza de aux, y se descartan las dos cabezas
                 mergeListHAcc(xs, ys, (hora(x), nuevaFlag) :: aux)
               }
-
           }
         }
     }

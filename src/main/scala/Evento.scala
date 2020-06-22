@@ -1,7 +1,7 @@
 class Evento(n:String) {
 
   val nombre:String = n
-  private var listaHorarios:List[Horario] = _
+  private var listaHorarios:List[Horario] = Nil
 
   // llama a buscarDia, y pide horas al horario resultante
   def agregarHorario(): Unit = {
