@@ -15,6 +15,12 @@ object main extends App {
         println("Qué nombre le querés poner al evento")
         val nuevo = io.StdIn.readLine().toLowerCase()
         insertarEvento(nuevo,listaEventos)
+        println("Listo, querés agregar horas para ese evento?")
+        io.StdIn.readLine().toLowerCase match {
+          case "si" => horasPara(nuevo)
+          case "no" => println("A las órdenes")
+          case _ => println("Si o no, por favor.")
+        }
         main()
       case "agregar horas" =>
         println("Para qué evento querés agregar horas?")
@@ -27,9 +33,9 @@ object main extends App {
         planificar(evento)
         main()
       case "salir" =>
-        println("A las órdenes")
+        println("A las órdenes.")
       case _ =>
-        println("No entendí")
+        println("No entendí.")
         main()
     }
   }
@@ -54,8 +60,7 @@ object main extends App {
     }
 
   // agrega horas disponibles para un evento
-  private def horasPara(nombreEvento: String): Unit = {
-    val nombre: String = nombreEvento.toLowerCase
+  private def horasPara(nombre: String): Unit = {
     val flag: Either[Evento, Boolean] = fetchEvento(nombre, listaEventos)  // busca el evento en listaEventos
     flag match {
       case Left(evento) => evento.agregarHorario()  // si lo encuentra le pide agregarHorario()

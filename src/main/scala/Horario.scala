@@ -34,7 +34,7 @@ class Horario(d:String) {
   // finalmente llama a mergeListHAcc para agregar los nuevos intervalos a la lista de intervalos preexistente
   def pedirHoras(): Unit = {
     val lista: List[(Hora, Int)] = entradaSalida()
-    println("Querés agregar más horas?")
+    println(s"Querés agregar más horas para $dia?")
     val aux: List[(Hora, Int)] = pedirHorasAcc(lista)
     horas = mergeListHAcc(horas, aux, Nil)
   }

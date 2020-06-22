@@ -7,8 +7,13 @@ class Evento(n:String) {
   def agregarHorario(): Unit = {
     println("Para qué día querés agregar horas?")
     val dia: String = io.StdIn.readLine(); val h: Horario = buscarDia(dia, listaHorarios)
-    println(s"Por favor ingresá de qué hora a qué hora estarías para '$nombre' ese día")
     h.pedirHoras()
+    println("Querés agregar horas para otro día?")
+    io.StdIn.readLine() match {
+      case "si" => agregarHorario()
+      case "no" => println("A las órdenes.")
+      case _ => println("Me voy porque no entendí.")
+    }
   }
   // busca un horario con día "dia" en "lista", si lo encuentre lo devuelve,
   // si no, crea uno nuevo, lo agrega al principio de listaHorarios, y lo devuelve
